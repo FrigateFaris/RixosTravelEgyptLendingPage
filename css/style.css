@@ -542,10 +542,10 @@ footer ul a:hover { color: var(--accent); }
 .js .reveal.from-right { transform: translateX(60px); }
 .js .reveal.zoom { transform: scale(.92); }
 .js .reveal.pop { transform: scale(.5); }
-.js .reveal.unmask { opacity: 1; transform: none; clip-path: inset(100% -60px -60px -60px); }
+.js .reveal.unmask { transform: translateY(40px) scale(.97); }
 .js .reveal.in { opacity: 1; transform: none; }
 /* clip-path только у «шторки», иначе он обрезает выходящие за карточку фото и тени */
-.js .reveal.unmask.in { clip-path: inset(-60px -60px -60px -60px); }
+.js .reveal.unmask.in { transform: none; }
 .js .reveal.in:hover, .stop:hover .pics .ph.in { transition-delay: 0s; }
 
 .tour.anim { animation: cardIn .9s cubic-bezier(.2,.7,.2,1) calc(var(--i) * 90ms) backwards; }
@@ -1139,4 +1139,21 @@ body::after { display: none; }                       /* зерно поверх 
   .final2-text { padding: 4px 20px 32px; }
   .msg-tiles { grid-template-columns: 1fr; gap: 12px; }
   .final2-sign { flex-direction: column; gap: 6px; }
+}
+
+/* боковой свайп на телефоне: ничего не выходит за ширину экрана
+   (clip у body не делает его отдельной прокруткой) */
+html { overflow-x: hidden; }
+body { overflow-x: clip; }
+
+/* финал без фото: одна карточка с контактами по центру */
+.final2 { grid-template-columns: 1fr; max-width: 760px; margin: 0 auto; text-align: center; }
+.final2-text { padding: 64px 56px 52px; align-items: center; }
+.final2-text > p { margin-left: auto; margin-right: auto; }
+.msg-tiles { width: 100%; text-align: left; }
+.final2-sign { justify-content: center; width: 100%; }
+.final2-live { margin-bottom: 22px; padding: 8px 14px; border-radius: 99px; background: rgba(244,237,226,.06); color: rgba(255,255,255,.8); }
+@media (max-width: 760px) {
+  .final2-text { padding: 40px 20px 32px; }
+  .final2-sign { align-items: center; }
 }
