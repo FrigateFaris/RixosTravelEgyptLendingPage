@@ -1,8 +1,17 @@
 // Rixos Travel Egypt — логика сайта (переводы — в i18n.js)
 
-// Видео — WebM (VP9); у первого экрана есть запасной MP4 для старых iPhone
-const VEXT = "webm";
-const vsrc = path => path.replace(/\.mp4$/, ".webm");
+// Видео — MP4 (H.264): играет во всех браузерах, включая iPhone
+const VEXT = "mp4";
+const vsrc = path => path;
+document.documentElement.classList.add("loaded");
+
+// Ленивая загрузка: фоновые картинки и видео подгружаются, только когда до них доскроллили
+const bgIO = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.style.backgroundImage = `url(${e.target.dataset.bg})`;
+  bgIO.unobserve(e.target);
+}), { rootMargin: "700px 0px" });
+const lazyBg = root => root.querySelectorAll("[data-bg]").forEach(el => bgIO.observe(el));
 
 // ---------- Контакты (менять здесь) ----------
 const CONTACTS = {
@@ -79,9 +88,8 @@ function renderTours(cat) {
     const ratio = sp && sp.r === 2 ? "1:1 · 1600×1600" : sp ? "16:9 · 1600×900" : "3:4 · 900×1200";
     return `
     <article class="tour anim${cls}" style="--i:${i}; ${vars}">
-        ${t.img ? `<div class="tour-glow" style="background-image:url(${t.img})"></div>` : ""}
       <div class="tour-in">
-        ${t.img ? `<div class="ph img" style="background-image:url(${t.img})"></div>` : `<div class="ph" data-ph="ФОН КАРТОЧКИ · ${ratio}"></div>`}
+        ${t.img ? `<div class="ph img" data-bg="${t.img}"></div>` : `<div class="ph" data-ph="ФОН КАРТОЧКИ · ${ratio}"></div>`}
         <span class="pin"><svg><use href="#i-pin"/></svg>${t.place}</span>
         <div class="panel">
           <div class="tags">${t.tags.join(" · ")}</div>
@@ -96,8 +104,7 @@ function renderTours(cat) {
     </article>`;
   }).join("");
   translateTree(gridEl);
-  const amb = document.querySelector(".tours-amb");
-  if (amb && list[0] && list[0].img) amb.style.backgroundImage = `url(${list[0].img})`;
+  lazyBg(gridEl);
 }
 tabsEl.innerHTML = CATEGORIES.map((c, i) =>
   `<button class="tab${i === 0 ? " on" : ""}" role="tab" data-cat="${c.id}">${c.name}</button>`).join("");
@@ -189,8 +196,16 @@ document.querySelectorAll(".reels-wrap").forEach(wrap => {
   sync();
 });
 // видео в «О Хайсаме» играет без звука, пока на экране
-const autoplay = new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? e.target.play().catch(() => {}) : e.target.pause()), { threshold: .4 });
-document.querySelectorAll("video[data-autoplay]").forEach(v => autoplay.observe(v));
+const autoplay = new IntersectionObserver(es => es.forEach(e => {
+  const v = e.target;
+  if (e.isIntersecting) { if (!v.src && v.dataset.src) v.src = v.dataset.src; v.play().catch(() => {}); }
+  else v.pause();
+}), { threshold: .3 });
+// ролики, что видны сразу (первый экран), начинают грузиться только после основного видео и картинок
+const startLazyVideos = () => document.querySelectorAll("video[data-autoplay]").forEach(v => autoplay.observe(v));
+if (document.readyState === "complete") setTimeout(startLazyVideos, 600);
+else addEventListener("load", () => setTimeout(startLazyVideos, 600), { once: true });
+lazyBg(document);
 // просмотр со звуком
 const vbox = document.getElementById("vbox"), vplayer = vbox.querySelector("video");
 document.addEventListener("click", e => {
@@ -332,7 +347,6 @@ function drawHero() {
 }
 const route = document.querySelector(".route");
 const line = document.querySelector(".route-line");
-const movers = [...document.querySelectorAll("[data-speed]")];
 let ticking = false;
 function onScroll() {
   ticking = false;
@@ -341,12 +355,6 @@ function onScroll() {
   if (reduce) { line.style.setProperty("--p", 1); return; }
   const r = route.getBoundingClientRect();
   line.style.setProperty("--p", Math.min(Math.max((vh * .65 - r.top) / r.height, 0), 1).toFixed(3));
-  movers.forEach(el => {
-    const b = el.getBoundingClientRect();
-    if (b.bottom < -200 || b.top > vh + 200) return;
-    const off = (b.top + b.height / 2 - vh / 2) * parseFloat(el.dataset.speed);
-    el.style.setProperty("--py", off.toFixed(1) + "px");
-  });
 }
 addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
 addEventListener("resize", onScroll);
@@ -371,60 +379,3 @@ document.querySelector(".lang").addEventListener("click", e => {
   if (b && b.dataset.lang !== LANG) setLang(b.dataset.lang);
 });
 setLang(LANG);
-
-// ---------- Заставка ----------
-const started = performance.now();
-const finishLoad = () => setTimeout(() => document.documentElement.classList.add("loaded"), Math.max(0, 1400 - (performance.now() - started)));
-if (reduce) document.documentElement.classList.add("loaded");
-else if (document.readyState === "complete") finishLoad();
-else { addEventListener("load", finishLoad, { once: true }); setTimeout(() => document.documentElement.classList.add("loaded"), 3500); }
-
-// ---------- Плавный скролл ----------
-if (window.Lenis && !reduce && matchMedia("(pointer: fine)").matches) {
-  const lenis = new Lenis({ duration: 1.15, easing: t => 1 - Math.pow(1 - t, 4) });
-  const raf = time => { lenis.raf(time); requestAnimationFrame(raf); };
-  requestAnimationFrame(raf);
-  document.addEventListener("click", e => {
-    const a = e.target.closest('a[href^="#"]');
-    if (a && a.getAttribute("href").length > 1) { e.preventDefault(); lenis.scrollTo(a.getAttribute("href"), { offset: -70 }); }
-  });
-}
-
-// ---------- Курсор и «магнитные» кнопки ----------
-if (matchMedia("(hover: hover) and (pointer: fine)").matches && !reduce) {
-  const cur = document.querySelector(".cursor"), label = cur.querySelector("span");
-  let x = -100, y = -100, cx = x, cy = y;
-  addEventListener("pointermove", e => {
-    x = e.clientX; y = e.clientY;
-    const t = e.target;
-    const lab = t.closest("[data-cursor]");
-    const field = t.closest("input, select, textarea");
-    cur.classList.toggle("hide", !!field);
-    cur.classList.toggle("label", !!lab && !t.closest(".side-arrow"));
-    cur.classList.toggle("link", !lab && !!t.closest("a, button, summary, .tour"));
-    if (lab) label.textContent = tr(lab.dataset.cursor);
-  }, { passive: true });
-  document.addEventListener("pointerleave", () => cur.classList.add("hide"));
-  const follow = () => { cx += (x - cx) * .2; cy += (y - cy) * .2; cur.style.setProperty("--cx", cx.toFixed(1) + "px"); cur.style.setProperty("--cy", cy.toFixed(1) + "px"); requestAnimationFrame(follow); };
-  follow();
-  document.querySelectorAll(".btn").forEach(b => {
-    b.addEventListener("pointermove", e => {
-      const r = b.getBoundingClientRect();
-      b.style.transform = `translate(${((e.clientX - r.left) / r.width - .5) * 14}px, ${((e.clientY - r.top) / r.height - .5) * 10}px)`;
-    });
-    b.addEventListener("pointerleave", () => { b.style.transform = ""; });
-  });
-}
-
-// ---------- Прожектор за курсором в тёмных секциях ----------
-if (matchMedia("(hover: hover) and (pointer: fine)").matches && !reduce) {
-  document.querySelectorAll("[data-spot]").forEach(sec => {
-    sec.addEventListener("pointermove", e => {
-      const r = sec.getBoundingClientRect();
-      sec.style.setProperty("--mx", (e.clientX - r.left).toFixed(0) + "px");
-      sec.style.setProperty("--my", (e.clientY - r.top).toFixed(0) + "px");
-      sec.classList.add("lit");
-    }, { passive: true });
-    sec.addEventListener("pointerleave", () => sec.classList.remove("lit"));
-  });
-}

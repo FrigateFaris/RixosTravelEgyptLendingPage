@@ -9,15 +9,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Raleway:wght@600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="content/posters/hero.webp">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div class="loader" aria-hidden="true">
-  <svg viewBox="0 0 24 24"><path d="M12 3 2 20h20L12 3Zm0 0 3 17M7.5 11.5h9"/></svg>
-  <span>Rixos Travel <b>Egypt</b></span>
-</div>
-<div class="cursor" aria-hidden="true"><span></span></div>
 
 <svg width="0" height="0" style="position:absolute">
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.42 1.3-1.95 1.34-.5.05-.97.23-3.27-.68-2.77-1.09-4.52-3.92-4.66-4.1-.13-.18-1.1-1.47-1.1-2.8 0-1.33.7-1.99.95-2.26.24-.27.53-.34.71-.34h.51c.16 0 .39-.06.6.46.23.54.77 1.87.84 2 .07.14.11.3.02.48-.09.18-.14.3-.27.46l-.41.48c-.14.13-.28.28-.12.55.16.27.7 1.16 1.51 1.88 1.04.93 1.91 1.21 2.18 1.35.27.14.43.11.59-.07.16-.18.68-.8.86-1.07.18-.27.36-.23.61-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.11.07.66-.17 1.33Z"/></symbol>
@@ -65,7 +61,7 @@
 
 <!-- ============ HERO: видео на фоне ============ -->
 <section class="hero2" id="top">
-  <div class="hero2-media"><video class="hero2-video" poster="content/posters/hero.webp" autoplay muted loop playsinline><source src="content/video/hero-1080.webm" type="video/webm"><source src="content/video/hero-1080.mp4" type="video/mp4"></video></div>
+  <div class="hero2-media"><video class="hero2-video" poster="content/posters/hero.webp" autoplay muted loop playsinline preload="auto" src="content/video/hero-1080.mp4"></video></div>
   <div class="hero2-shade"></div>
   <div class="wrap hero2-content">
     <div class="eyebrow intro" style="--d:.2s">Шарм-эль-Шейх · Дахаб · Каир · Луксор</div>
@@ -77,8 +73,8 @@
     </div>
   </div>
   <aside class="host intro" style="--d:1s">
-    <div class="host-media" data-open="content/video/v19.mp4" data-cursor="Смотреть">
-      <video poster="content/posters/v19.webp" muted loop playsinline autoplay preload="metadata"><source src="content/video/v19.webm" type="video/webm"></video>
+    <div class="host-media" data-open="content/video/v19.mp4">
+      <video poster="content/posters/v19.webp" muted loop playsinline preload="none" data-src="content/video/v19.mp4" data-autoplay></video>
       <span class="host-play"><svg><use href="#i-play"/></svg></span>
     </div>
     <div class="host-info">
@@ -114,7 +110,7 @@
 
 <!-- ============ СРАВНЕНИЕ ============ -->
 <section id="why" data-spot style="padding-top:112px">
-  <div class="sec-photo" style="background-image:url(content/photos/stock/pyramids-sunset.webp)" aria-hidden="true"></div>
+  <div class="sec-photo" data-bg="content/photos/stock/pyramids-sunset.webp" aria-hidden="true"></div>
   <div class="wrap">
     <div class="head"><div>
       <div class="eyebrow">Почему напрямую</div>
@@ -123,7 +119,7 @@
     </div></div>
     <div class="vs">
       <div class="vs-card them">
-        <div class="ph img vs-bg" style="background-image:url(content/photos/stock/tourist-bus.webp)"></div>
+        <div class="ph img vs-bg" data-bg="content/photos/stock/tourist-bus.webp"></div>
         <div class="vs-body">
           <div class="vs-tag">Как обычно</div>
           <h3>Стандартный тур</h3>
@@ -138,7 +134,7 @@
       </div>
       <div class="vs-badge">VS</div>
       <div class="vs-card us">
-        <div class="ph img vs-bg" style="background-image:url(content/photos/stock/pyramids-sunset.webp)"></div>
+        <div class="ph img vs-bg" data-bg="content/photos/stock/pyramids-sunset.webp"></div>
         <div class="ph vs-ava" data-ph="ХАЙСАМ&#10;1:1"></div>
         <div class="vs-body">
           <div class="vs-tag">Напрямую</div>
@@ -162,12 +158,12 @@
   <div class="wrap about">
     <div class="about-media">
       <div class="about-video about-photo" data-video="content/video/v19.mp4">
-        <video poster="content/posters/v19.webp" muted loop playsinline preload="metadata" data-autoplay><source src="content/video/v19.webm" type="video/webm"></video>
+        <video poster="content/posters/v19.webp" muted loop playsinline preload="none" data-src="content/video/v19.mp4" data-autoplay></video>
         <span class="name">Хайсам · Большой Египетский музей</span>
         <button class="btn btn-sm btn-line sound" type="button" data-open="content/video/v19.mp4"><svg><use href="#i-play"/></svg>Смотреть со звуком</button>
       </div>
-      <div class="ph img about-photo-2" data-speed="-0.08" style="background-image:url(content/photos/photo-sphinx.webp)"></div>
-      <div class="about-badge" data-speed="0.06"><b>20+</b><span>лет в Египте</span></div>
+      <div class="ph img about-photo-2" data-bg="content/photos/photo-sphinx.webp"></div>
+      <div class="about-badge"><b>20+</b><span>лет в Египте</span></div>
     </div>
     <div class="about-text">
       <div class="eyebrow">Ваш гид в Египте</div>
@@ -190,13 +186,13 @@
     <div class="head">
       <div><div class="eyebrow">Видео с экскурсий</div><h2>Как проходят <em>наши экскурсии</em></h2><p>Без постановки — так выглядит обычный день с группой. Наведите, чтобы посмотреть, нажмите — со звуком.</p></div>
     </div>
-    <div class="reels-wrap" data-cursor="Смотреть"><button class="side-arrow prev" type="button" data-dir="-1" aria-label="Назад" hidden><svg><use href="#i-arrow"/></svg></button><div class="reels" data-reels="inaction"></div><button class="side-arrow next" type="button" data-dir="1" aria-label="Вперёд"><svg><use href="#i-arrow"/></svg></button></div>
+    <div class="reels-wrap"><button class="side-arrow prev" type="button" data-dir="-1" aria-label="Назад" hidden><svg><use href="#i-arrow"/></svg></button><div class="reels" data-reels="inaction"></div><button class="side-arrow next" type="button" data-dir="1" aria-label="Вперёд"><svg><use href="#i-arrow"/></svg></button></div>
   </div>
 </section>
 
 <!-- ============ КАК ЭТО РАБОТАЕТ ============ -->
 <section id="how" data-spot style="padding-top:32px">
-  <div class="sec-photo" style="background-image:url(content/photos/stock/camels.webp)" aria-hidden="true"></div>
+  <div class="sec-photo" data-bg="content/photos/stock/camels.webp" aria-hidden="true"></div>
   <div class="wrap">
     <div class="head"><div>
       <div class="eyebrow">Как это работает</div>
@@ -204,7 +200,7 @@
     </div></div>
     <div class="steps">
       <div class="steps-col1">
-        <div class="step"><div class="ph img pic" style="background-image:url(content/photos/stock/phone.webp)"></div><span class="num">01</span><h4>Напишите в мессенджер</h4><p>Какая экскурсия интересна, где вы живёте и сколько вас.</p></div>
+        <div class="step"><div class="ph img pic" data-bg="content/photos/stock/phone.webp"></div><span class="num">01</span><h4>Напишите в мессенджер</h4><p>Какая экскурсия интересна, где вы живёте и сколько вас.</p></div>
         <div class="steps-cta">
           <p>Готовы? Первый шаг — одно сообщение.</p>
           <div class="cta-row">
@@ -213,15 +209,14 @@
           </div>
         </div>
       </div>
-      <div class="step"><div class="ph img pic" style="background-image:url(content/photos/stock/map.webp)"></div><span class="num">02</span><h4>Получите программу</h4><p>Хайсам подскажет лучший вариант и дату, время выезда и что взять с собой.</p></div>
-      <div class="step"><div class="ph img pic" style="background-image:url(content/photos/stock/hotel-sea.webp)"></div><span class="num">03</span><h4>Отдыхайте</h4><p>Вас заберут от отеля. Оплата в USD, EUR, EGP, RUB, UAH, KZT или картой.</p></div>
+      <div class="step"><div class="ph img pic" data-bg="content/photos/stock/map.webp"></div><span class="num">02</span><h4>Получите программу</h4><p>Хайсам подскажет лучший вариант и дату, время выезда и что взять с собой.</p></div>
+      <div class="step"><div class="ph img pic" data-bg="content/photos/stock/hotel-sea.webp"></div><span class="num">03</span><h4>Отдыхайте</h4><p>Вас заберут от отеля. Оплата в USD, EUR, EGP, RUB, UAH, KZT или картой.</p></div>
     </div>
   </div>
 </section>
 
 <!-- ============ ЭКСКУРСИИ ============ -->
 <section id="tours">
-  <div class="tours-amb" aria-hidden="true"></div>
   <div class="wrap">
     <div class="head">
       <div><div class="eyebrow">Экскурсии и активности</div><h2>Куда <em>поехать</em></h2></div>
@@ -249,23 +244,23 @@
       <div class="route-line"></div>
       <div class="stop">
         <div class="info"><small>Море · пустыня</small><h4>Шарм-эль-Шейх</h4><p>Рифы Рас-Мохаммеда и Белого острова, яхты, дайвинг, сафари на квадроциклах.</p></div>
-        <div class="pics" data-speed="-0.05"><div class="ph img" style="background-image:url(content/photos/stock/coral-reef.webp)"></div><div class="ph img" style="background-image:url(content/photos/stock/quad-sunset.webp)"></div></div>
+        <div class="pics"><div class="ph img" data-bg="content/photos/stock/coral-reef.webp"></div><div class="ph img" data-bg="content/photos/stock/quad-sunset.webp"></div></div>
       </div>
       <div class="stop flip">
         <div class="info"><small>Синай</small><h4>Дахаб и монастырь</h4><p>Цветной каньон, Голубая дыра, бедуинская деревня, гора Моисея и монастырь Св. Екатерины.</p></div>
-        <div class="pics" data-speed="-0.05"><div class="ph img" style="background-image:url(content/photos/stock/colored-canyon.webp)"></div><div class="ph img" style="background-image:url(content/photos/stock/mount-sinai.webp)"></div></div>
+        <div class="pics"><div class="ph img" data-bg="content/photos/stock/colored-canyon.webp"></div><div class="ph img" data-bg="content/photos/stock/mount-sinai.webp"></div></div>
       </div>
       <div class="stop">
         <div class="info"><small>Автобус · микроавтобус · самолёт</small><h4>Каир</h4><p>Большой Египетский музей, пирамиды Гизы, Сфинкс, Висячая церковь.</p></div>
-        <div class="pics" data-speed="-0.05"><div class="ph img" style="background-image:url(content/photos/stock/giza.webp)"></div><div class="ph img" style="background-image:url(content/photos/stock/grand-museum.webp)"></div></div>
+        <div class="pics"><div class="ph img" data-bg="content/photos/stock/giza.webp"></div><div class="ph img" data-bg="content/photos/stock/grand-museum.webp"></div></div>
       </div>
       <div class="stop flip">
         <div class="info"><small>Самолёт</small><h4>Луксор</h4><p>Карнак, храм царицы Хатшепсут и Долина царей.</p></div>
-        <div class="pics" data-speed="-0.05"><div class="ph img" style="background-image:url(content/photos/stock/karnak.webp)"></div><div class="ph img" style="background-image:url(content/photos/stock/hatshepsut.webp)"></div></div>
+        <div class="pics"><div class="ph img" data-bg="content/photos/stock/karnak.webp"></div><div class="ph img" data-bg="content/photos/stock/hatshepsut.webp"></div></div>
       </div>
       <div class="stop">
         <div class="info"><small>Паром Нувейба — Акаба</small><h4>Петра, Иордания</h4><p>Сокровищница Эль-Хазне, амфитеатр, древние гробницы и прогулка по Акабе.</p></div>
-        <div class="pics" data-speed="-0.05"><div class="ph img" style="background-image:url(content/photos/stock/petra.webp)"></div><div class="ph img" style="background-image:url(content/photos/stock/aqaba.webp)"></div></div>
+        <div class="pics"><div class="ph img" data-bg="content/photos/stock/petra.webp"></div><div class="ph img" data-bg="content/photos/stock/aqaba.webp"></div></div>
       </div>
     </div>
   </div>
@@ -280,19 +275,19 @@
     </div></div>
     <div class="bento">
       <div class="svc">
-        <div class="svc-bg"><div class="ph img" style="background-image:url(content/photos/stock/sphinx.webp)"></div></div>
+        <div class="svc-bg"><div class="ph img" data-bg="content/photos/stock/sphinx.webp"></div></div>
         <div class="svc-text"><span class="ico"><svg><use href="#i-pyramid"/></svg></span><b>Экскурсии и туры</b><span>Групповые и индивидуальные программы по Египту и в Иорданию</span></div>
       </div>
       <div class="svc">
-        <div class="svc-bg"><div class="ph img" style="background-image:url(content/photos/stock/hotel-sea.webp)"></div></div>
+        <div class="svc-bg"><div class="ph img" data-bg="content/photos/stock/hotel-sea.webp"></div></div>
         <div class="svc-text"><span class="ico"><svg><use href="#i-hotel"/></svg></span><b>Отели</b><span>Прямое сотрудничество с отелями по всему Египту</span></div>
       </div>
       <div class="svc">
-        <div class="svc-bg"><div class="ph img" style="background-image:url(content/photos/stock/plane-window.webp)"></div></div>
+        <div class="svc-bg"><div class="ph img" data-bg="content/photos/stock/plane-window.webp"></div></div>
         <div class="svc-text"><span class="ico"><svg><use href="#i-plane"/></svg></span><b>Авиабилеты</b><span>В том числе внутри Египта</span></div>
       </div>
       <div class="svc">
-        <div class="svc-bg"><div class="ph img" style="background-image:url(content/photos/stock/desert-road.webp)"></div></div>
+        <div class="svc-bg"><div class="ph img" data-bg="content/photos/stock/desert-road.webp"></div></div>
         <div class="svc-text"><span class="ico"><svg><use href="#i-car"/></svg></span><b>Трансфер</b><span>Аэропорт и города</span></div>
       </div>
     </div>
@@ -305,7 +300,7 @@
 
 <!-- ============ ТРАНСФЕР ============ -->
 <section id="transfer" data-spot>
-  <div class="sec-photo" style="background-image:url(content/photos/stock/desert-road.webp)" aria-hidden="true"></div>
+  <div class="sec-photo" data-bg="content/photos/stock/desert-road.webp" aria-hidden="true"></div>
   <div class="wrap">
     <div class="head">
       <div><div class="eyebrow">Транспорт по Египту</div><h2>Трансфер</h2></div>
@@ -338,7 +333,7 @@
         </div>
       </div>
       <div class="route-builder">
-        <div class="ph ph-bg img" style="background-image:url(content/photos/stock/desert-road.webp)"></div>
+        <div class="ph ph-bg img" data-bg="content/photos/stock/desert-road.webp"></div>
         <div class="rb-in">
           <div class="eyebrow">Между любыми городами</div>
           <h4>Соберите маршрут — рассчитаем стоимость</h4>
@@ -372,30 +367,30 @@
 
 <!-- ============ ОТЗЫВЫ ============ -->
 <section id="reviews" data-spot>
-  <div class="sec-photo" style="background-image:url(content/photos/stock/cairo-plane-private.webp)" aria-hidden="true"></div>
+  <div class="sec-photo" data-bg="content/photos/stock/cairo-plane-private.webp" aria-hidden="true"></div>
   <div class="wrap">
     <div class="head">
       <div><div class="eyebrow">Из отзывов гостей</div><h2>Момент, ради которого <em>едут в Египет</em></h2></div>
     </div>
-    <div class="reels-wrap" data-cursor="Смотреть"><button class="side-arrow prev" type="button" data-dir="-1" aria-label="Назад" hidden><svg><use href="#i-arrow"/></svg></button><div class="reels video-reviews" data-reels="guests"></div><button class="side-arrow next" type="button" data-dir="1" aria-label="Вперёд"><svg><use href="#i-arrow"/></svg></button></div>
+    <div class="reels-wrap"><button class="side-arrow prev" type="button" data-dir="-1" aria-label="Назад" hidden><svg><use href="#i-arrow"/></svg></button><div class="reels video-reviews" data-reels="guests"></div><button class="side-arrow next" type="button" data-dir="1" aria-label="Вперёд"><svg><use href="#i-arrow"/></svg></button></div>
     <div class="reviews">
       <div class="review"><div class="ph face"></div><div class="stars">★★★★★</div><p>Текст отзыва от Хайсама: 2–3 предложения о поездке. <span class="todo">нужен отзыв</span></p><div class="who"><b>Имя гостя</b><span>Город · экскурсия</span></div></div>
       <div class="review"><div class="ph face"></div><div class="stars">★★★★★</div><p>Текст отзыва от Хайсама: 2–3 предложения о поездке. <span class="todo">нужен отзыв</span></p><div class="who"><b>Имя гостя</b><span>Город · экскурсия</span></div></div>
       <div class="review"><div class="ph face"></div><div class="stars">★★★★★</div><p>Текст отзыва от Хайсама: 2–3 предложения о поездке. <span class="todo">нужен отзыв</span></p><div class="who"><b>Имя гостя</b><span>Город · экскурсия</span></div></div>
     </div>
     <div class="polaroids">
-      <div class="polaroid"><div class="ph img" style="background-image:url(content/photos/photo-sphinx.webp)"></div></div>
-      <div class="polaroid"><div class="ph img" style="background-image:url(content/posters/v17.webp)"></div></div>
-      <div class="polaroid"><div class="ph img" style="background-image:url(content/photos/photo-museum.webp)"></div></div>
-      <div class="polaroid"><div class="ph img" style="background-image:url(content/posters/v15.webp)"></div></div>
-      <div class="polaroid"><div class="ph img" style="background-image:url(content/posters/v12.webp)"></div></div>
+      <div class="polaroid"><div class="ph img" data-bg="content/photos/photo-sphinx.webp"></div></div>
+      <div class="polaroid"><div class="ph img" data-bg="content/posters/v17.webp"></div></div>
+      <div class="polaroid"><div class="ph img" data-bg="content/photos/photo-museum.webp"></div></div>
+      <div class="polaroid"><div class="ph img" data-bg="content/posters/v15.webp"></div></div>
+      <div class="polaroid"><div class="ph img" data-bg="content/posters/v12.webp"></div></div>
     </div>
   </div>
 </section>
 
 <!-- ============ FAQ ============ -->
 <section id="faq" data-spot style="padding-top:32px">
-  <div class="sec-photo" style="background-image:url(content/photos/stock/karnak.webp)" aria-hidden="true"></div>
+  <div class="sec-photo" data-bg="content/photos/stock/karnak.webp" aria-hidden="true"></div>
   <div class="wrap faq-grid">
     <div class="faq-side">
       <div class="head"><div><div class="eyebrow">Вопросы</div><h2>Спросите <em>Хайсама</em></h2></div></div>
@@ -422,7 +417,7 @@
 
 <!-- ============ ФИНАЛ ============ -->
 <section class="final" id="contacts">
-  <div class="ph ph-bg img" style="background-image:url(content/photos/stock/nile-sunset.webp)"></div>
+  <div class="ph ph-bg img" data-bg="content/photos/stock/nile-sunset.webp"></div>
   <div class="final-shade"></div>
   <!-- сюда встанет Хайсам на PNG без фона (класс .final-cut), когда будет фото -->
   <div class="wrap">
@@ -464,7 +459,7 @@
       <div><h5>Навигация</h5><ul><li><a href="#about">О Хайсаме</a></li><li><a href="#tours">Экскурсии</a></li><li><a href="#route">Направления</a></li><li><a href="#transfer">Трансфер</a></li><li><a href="#faq">Вопросы</a></li></ul></div>
       <div><h5>Экскурсии</h5><ul id="foot-cats"></ul></div>
       <div><h5>Контакты</h5><ul><li><a class="js-tel" href="#">+20 122 405 7253</a></li><li><a class="js-wa" href="#">WhatsApp</a></li><li><a class="js-tg" href="#">Telegram</a></li><li>Работаю по всему Египту</li><li>USD · EUR · EGP · RUB · UAH · KZT · карта</li></ul></div>
-      <div><h5>Галерея</h5><div class="f-gallery"><div class="ph img" style="background-image:url(content/photos/stock/valley-kings.webp)"></div><div class="ph img" style="background-image:url(content/photos/stock/white-island.webp)"></div><div class="ph img" style="background-image:url(content/photos/stock/camels.webp)"></div><div class="ph img" style="background-image:url(content/photos/stock/karnak.webp)"></div><div class="ph img" style="background-image:url(content/photos/stock/dolphin.webp)"></div><div class="ph img" style="background-image:url(content/photos/stock/petra.webp)"></div></div></div>
+      <div><h5>Галерея</h5><div class="f-gallery"><div class="ph img" data-bg="content/photos/stock/valley-kings.webp"></div><div class="ph img" data-bg="content/photos/stock/white-island.webp"></div><div class="ph img" data-bg="content/photos/stock/camels.webp"></div><div class="ph img" data-bg="content/photos/stock/karnak.webp"></div><div class="ph img" data-bg="content/photos/stock/dolphin.webp"></div><div class="ph img" data-bg="content/photos/stock/petra.webp"></div></div></div>
     </div>
     <div class="copy"><span>© 2026 Rixos Travel Egypt</span><span>Сделано с заботой о ваших впечатлениях</span></div>
   </div>
@@ -472,7 +467,6 @@
 
 <div class="vbox" id="vbox" role="dialog" aria-label="Видео"><video controls playsinline></video><button type="button" aria-label="Закрыть">×</button></div>
 
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script src="js/i18n.js"></script>
 
 <a class="float js-wa" href="#" aria-label="Написать в WhatsApp"><svg><use href="#i-wa"/></svg></a>
