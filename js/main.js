@@ -337,10 +337,12 @@ document.querySelectorAll("[data-count]").forEach(b => counters.observe(b));
 const header = document.getElementById("header");
 const heroVideo = document.querySelector(".hero2-video");
 const hero = document.querySelector(".hero2"), heroMedia = hero.querySelector(".hero2-media"), heroContent = hero.querySelector(".hero2-content");
-function drawHero() {
-  const y = scrollY, vh = innerHeight;
-  header.classList.toggle("solid", y > 40);
-  if (reduce || y > vh * 1.2) return;
+// на телефоне параллакс первого экрана отключён — меньше перерисовок при скролле
+const phone = matchMedia("(max-width: 760px), (hover: none)");
+let solid = null;
+function drawHero(y, vh) {
+  if (solid !== y > 40) { solid = y > 40; header.classList.toggle("solid", solid); }
+  if (reduce || phone.matches || y > vh * 1.2) return;
   heroMedia.style.setProperty("--hy", (y * .35).toFixed(1) + "px");
   heroContent.style.setProperty("--hc", (y * -.12).toFixed(1) + "px");
   heroContent.style.setProperty("--ho", Math.max(0, 1 - y / (vh * .75)).toFixed(3));
@@ -348,17 +350,21 @@ function drawHero() {
 const route = document.querySelector(".route");
 const line = document.querySelector(".route-line");
 let ticking = false;
+let lastP = -1;
 function onScroll() {
   ticking = false;
-  const y = scrollY, vh = innerHeight;
-  drawHero();
-  if (reduce) { line.style.setProperty("--p", 1); return; }
-  const r = route.getBoundingClientRect();
-  line.style.setProperty("--p", Math.min(Math.max((vh * .65 - r.top) / r.height, 0), 1).toFixed(3));
+  // сначала все замеры, потом запись стилей — без лишних пересчётов раскладки
+  const y = scrollY, vh = innerHeight, r = route.getBoundingClientRect();
+  drawHero(y, vh);
+  const p = reduce ? 1 : +Math.min(Math.max((vh * .65 - r.top) / r.height, 0), 1).toFixed(3);
+  if (p !== lastP) { lastP = p; line.style.setProperty("--p", p); }
 }
 addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
 addEventListener("resize", onScroll);
 onScroll();
+
+// видео первого экрана не декодируется, пока его не видно
+new IntersectionObserver(([e]) => e.isIntersecting ? heroVideo.play().catch(() => {}) : heroVideo.pause()).observe(hero);
 
 // ---------- Язык ----------
 const TITLE_RU = document.title, META = document.querySelector('meta[name="description"]'), META_RU = META.content;

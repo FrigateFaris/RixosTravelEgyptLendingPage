@@ -1174,3 +1174,37 @@ body { overflow-x: clip; }
   .hf-ico { width: 26px; } .hf-ico svg { width: 24px; height: 24px; }
   .hf b { font-size: 14px; } .hf span:not(.hf-ico) { font-size: 12px; }
 }
+
+/* ===================================================================
+   Производительность на телефонах
+   =================================================================== */
+/* шапка: размытие под ней пересчитывалось на каждом кадре скролла */
+.header.solid { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(16,12,9,.96); }
+/* «онлайн»-точка и кнопка видео: пульс через transform вместо тени (тень перерисовывалась постоянно) */
+.dot { position: relative; animation: none; box-shadow: none; }
+.dot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: #3DDC84; animation: dotPulse 2s ease-out infinite; }
+@keyframes dotPulse { from { transform: scale(1); opacity: .6; } 70%, 100% { transform: scale(2.6); opacity: 0; } }
+.host-play { animation: none; }
+.rb-line i { animation: none; }
+@media (max-width: 760px), (hover: none) {
+  .js .host.intro { animation: introUp 1.1s cubic-bezier(.2,.7,.2,1) var(--d) forwards; }
+  .final-host, .svc .cut, .t-cities .cut, .route-builder .cut { animation: none; }
+  .hero2-media { will-change: auto; translate: none; }
+  .hero2-content { translate: none; opacity: 1; }
+  /* появление при скролле — короче и без сдвигов вбок */
+  .js .reveal { transition-duration: .7s, .7s, 0s, .4s, .4s, .4s; }
+  .js .reveal.from-left, .js .reveal.from-right { transform: translateY(32px); }
+  .js .reveal.pop { transform: scale(.85); }
+}
+
+/* трансфер: билеты не вылезают за экран на ширинах 1000–1200 px */
+@media (min-width: 1001px) { .tickets-row { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.ticket, .t-main, .t-main > div { min-width: 0; }
+.t-main b { overflow-wrap: anywhere; }
+@media (max-width: 1200px) and (min-width: 1001px) {
+  .ticket { --stub: 104px; }
+  .t-main { padding: 22px 16px; gap: 6px 12px; }
+  .t-stub b { font-size: 15px; }
+}
+/* стрелки у роликов: на экранах уже 1280 px не уходят за край */
+@media (max-width: 1280px) { .side-arrow.prev { left: 8px; } .side-arrow.next { right: 8px; } }

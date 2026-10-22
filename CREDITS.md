@@ -31,7 +31,6 @@
 | dolphin | Joe Boyne | 3439576 |
 | buggy | Quang Nguyen Vinh | 2155728 |
 | quad-sunset | Alexander Popovkin | 14085753 |
-| desert-camp | AXP Photography | 18682554 |
 | colored-canyon | Vintage Laka | 19019026 |
 | dahab | Mohamed Elshiekh | 40359548 |
 | st-catherine | Сокіл Sokil | 37305715 |
@@ -49,7 +48,6 @@
 | phone | freestocks.org | 1083931 |
 | map | Leah Newhouse | 3935702 |
 | valley-kings | AXP Photography | 18934674 |
-| nile-sunset | Cristian Bagnarello | 5727263 |
 | giza | Michelle Chadwick | 31133003 |
 
-Все остальные фото и видео (`content/video/v01–v20`, `content/photos/photo-*.webp`, `content/photos/haytham.webp`) — собственные материалы Хайсама.
+Все остальные фото и видео (`content/video/v01–v20`, `content/photos/photo-*.webp`) — собственные материалы Хайсама.
