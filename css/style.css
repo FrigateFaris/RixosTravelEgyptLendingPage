@@ -1074,36 +1074,17 @@ body::after { display: none; }                       /* зерно поверх 
 .ph.img { background-color: #1D1611; }
 
 /* ===================================================================
-   Переходы между блоками: у всех секций один и тот же базовый цвет,
-   атмосфера — только мягкие пятна света внутри секции, без полос
-   =================================================================== */
-#why, #about, #inaction, #how, #tours, #services, #transfer, #reviews, #faq { background-color: var(--bg); }
-#why { background: radial-gradient(ellipse 55% 45% at 50% 50%, rgba(201,151,74,.07), transparent 70%), var(--bg); }
-#inaction { background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(46,120,120,.16), transparent 72%), var(--bg); }
-#how { background: var(--bg); }
-#tours { background: radial-gradient(ellipse 55% 40% at 50% 35%, rgba(232,140,60,.12), transparent 72%), var(--bg); }
-#route { background:
-  radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,.45), transparent 50%),
-  radial-gradient(1px 1px at 120px 80px, rgba(255,255,255,.3), transparent 50%),
-  radial-gradient(1.5px 1.5px at 200px 160px, rgba(255,236,200,.4), transparent 50%),
-  radial-gradient(1px 1px at 60px 190px, rgba(255,255,255,.25), transparent 50%),
-  var(--bg);
-  background-size: 240px 240px, 240px 240px, 240px 240px, 240px 240px, auto;
-  -webkit-mask: none; mask: none; }
-#route::after { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: linear-gradient(180deg, var(--bg), transparent 25%, transparent 75%, var(--bg)); }
-#services { background: radial-gradient(ellipse 50% 45% at 30% 50%, rgba(201,151,74,.08), transparent 72%), var(--bg); }
-#transfer { background: var(--bg); }
-#reviews { background: radial-gradient(ellipse 55% 45% at 50% 40%, rgba(201,120,74,.09), transparent 72%), var(--bg); }
-#faq { background: var(--bg); }
-.sec-photo { -webkit-mask: radial-gradient(ellipse 70% 55% at 50% 50%, #000 30%, transparent 75%); mask: radial-gradient(ellipse 70% 55% at 50% 50%, #000 30%, transparent 75%); opacity: .14; }
-.marquee { background: var(--bg); }
-.marquee:not(.rev) .track span { -webkit-text-stroke: 1.5px rgba(201,151,74,.55); }
-.marquee:not(.rev) .track span::after { color: var(--accent); }
-
-/* ===================================================================
    Темнее картинки: «Куда поехать» и «Всё для отдыха»
    =================================================================== */
 .tour .ph.img { filter: brightness(.62) saturate(1.05); }
 .tour-in::after { background: linear-gradient(180deg, rgba(10,7,5,.3) 0%, rgba(10,7,5,.1) 40%, rgba(10,7,5,.75) 100%); }
 .svc-bg .ph.img { filter: brightness(.55) saturate(1.05); }
 .svc-bg::after { background: linear-gradient(200deg, rgba(10,7,5,.25) 20%, rgba(10,7,5,.9)); }
+
+/* ===================================================================
+   Плавные переходы: фоны секций прежние, но край каждой секции
+   растворяется в общем цвете длинно и по кривой — без видимых полос
+   =================================================================== */
+:root { --fade: linear-gradient(180deg,
+  var(--bg) 0%, rgba(16,12,9,.94) 4%, rgba(16,12,9,.82) 8%, rgba(16,12,9,.64) 13%, rgba(16,12,9,.44) 18%, rgba(16,12,9,.26) 23%, rgba(16,12,9,.12) 28%, rgba(16,12,9,.04) 32%, rgba(16,12,9,0) 36%,
+  rgba(16,12,9,0) 64%, rgba(16,12,9,.04) 68%, rgba(16,12,9,.12) 72%, rgba(16,12,9,.26) 77%, rgba(16,12,9,.44) 82%, rgba(16,12,9,.64) 87%, rgba(16,12,9,.82) 92%, rgba(16,12,9,.94) 96%, var(--bg) 100%); }
