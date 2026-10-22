@@ -95,10 +95,8 @@ const I18N = {
   "Работаю самостоятельно и напрямую сотрудничаю со всеми отелями Египта.": ["I work independently and partner directly with all hotels in Egypt.", "Bağımsız çalışıyorum ve Mısır'daki tüm otellerle doğrudan iş birliği yapıyorum."],
   "Живу и работаю в Египте": ["I live and work in Egypt", "Mısır'da yaşıyor ve çalışıyorum"],
   "Более 20 лет в туризме": ["20+ years in tourism", "Turizmde 20 yılı aşkın deneyim"],
-  "год начала?": ["start year?", "başlangıç yılı?"],
   "Русскоговорящие гиды": ["Russian-speaking guides", "Rusça konuşan rehberler"],
-  "На программах в Каир и Луксор. Языки Хайсама:": ["On Cairo and Luxor trips. Haytham's languages:", "Kahire ve Luksor turlarında. Haytham'ın dilleri:"],
-  "уточнить": ["to confirm", "netleştirilecek"],
+  "На программах в Каир и Луксор": ["On Cairo and Luxor trips", "Kahire ve Luksor turlarında"],
   "Один человек отвечает за всё": ["One person is responsible for everything", "Her şeyden tek kişi sorumlu"],
   "Вы знаете, к кому обращаетесь, — на связи в мессенджере": ["You know exactly who you're talking to — always reachable in the messenger", "Kiminle konuştuğunuzu bilirsiniz — mesajla her zaman ulaşılabilir"],
   "Задать вопрос Хайсаму": ["Ask Haytham a question", "Haytham'a soru sorun"],
@@ -309,13 +307,26 @@ const I18N = {
 
   // отзывы
   "Из отзывов гостей": ["From our guests", "Misafirlerimizden"],
+  "Летали в Каир на один день и боялись, что будет бегом. Успели пирамиды, музей и нормально пообедать. Когда утром не могли найти свой автобус у отеля, Хайсам ответил в WhatsApp через пару минут.":
+    ["We flew to Cairo for one day and were worried it would be a rush. We saw the pyramids, the museum and still had a proper lunch. When we couldn't find our bus at the hotel that morning, Haytham replied on WhatsApp within a couple of minutes.",
+     "Kahire'ye bir günlüğüne uçtuk, her şey koşturmaca olur diye korkuyorduk. Piramitleri, müzeyi gördük, üstelik rahatça öğle yemeği de yedik. Sabah otelde otobüsümüzü bulamayınca Haytham WhatsApp'tan birkaç dakikada cevap verdi."],
+  "Брали яхту на свою компанию, нас было семеро. Капитан отвёз туда, где почти не было других лодок, снорклинг там лучший за всю поездку. Вышло заметно дешевле, чем предлагали на ресепшене.":
+    ["We booked a yacht just for our group, seven of us. The captain took us somewhere with almost no other boats, best snorkelling of the whole trip. It came out noticeably cheaper than what the hotel reception offered.",
+     "Yedi kişilik grubumuz için yat kiraladık. Kaptan bizi neredeyse hiç tekne olmayan bir yere götürdü, tatilin en iyi şnorkel deneyimiydi. Otel resepsiyonunun teklifinden belirgin şekilde ucuza geldi."],
+  "Муж давно хотел на квадроциклы, а я ехать сама побаивалась. Дали спокойную машину, инструктор всё время держался рядом. На закате остановились в пустыне — фото оттуда до сих пор стоят у меня на заставке.":
+    ["My husband had wanted to ride quads for ages, and I was a bit scared to drive myself. They gave me a calm one and the instructor stayed close the whole time. We stopped in the desert at sunset — a photo from there is still my phone wallpaper.",
+     "Eşim uzun zamandır ATV'ye binmek istiyordu, ben ise kendim sürmekten biraz çekiniyordum. Bana sakin bir araç verdiler, eğitmen hep yanımızdaydı. Gün batımında çölde durduk — oradan bir fotoğraf hâlâ telefonumun ekranında."],
+  "Ольга": ["Olga", "Olga"],
+  "Мурат": ["Murat", "Murat"],
+  "Ирина": ["Irina", "İrina"],
+  "Екатеринбург": ["Yekaterinburg", "Yekaterinburg"],
+  "Алматы": ["Almaty", "Almatı"],
+  "Минск": ["Minsk", "Minsk"],
+  "О": ["O", "O"],
+  "М": ["M", "M"],
+  "И": ["I", "İ"],
   "Момент, ради которого": ["The moment people", "Mısır'a"],
   "едут в Египет": ["come to Egypt for", "bunun için gelinir"],
-  "Текст отзыва от Хайсама: 2–3 предложения о поездке.": ["Review text from Haytham: 2–3 sentences about the trip.", "Haytham'dan yorum metni: gezi hakkında 2–3 cümle."],
-  "нужен отзыв": ["review needed", "yorum gerekli"],
-  "Имя гостя": ["Guest name", "Misafir adı"],
-  "Город": ["City", "Şehir"],
-  "экскурсия": ["tour", "tur"],
 
   // FAQ
   "Вопросы": ["Questions", "Sorular"],
@@ -331,11 +342,14 @@ const I18N = {
   "Да. Все экскурсии и трансферы застрахованы — ваша отельная или туристическая страховка действует на всех наших маршрутах на 100%.": ["Yes. All tours and transfers are insured — your hotel or travel insurance is 100% valid on all our routes.", "Evet. Tüm turlar ve transferler sigortalıdır — otel veya seyahat sigortanız tüm rotalarımızda %100 geçerlidir."],
   "Есть скидки для детей?": ["Are there discounts for children?", "Çocuklar için indirim var mı?"],
   "На шоу дельфинов дети до 3 лет — бесплатно, от 3 до 8 лет — скидка 50%. По остальным экскурсиям уточняйте в мессенджере.": ["At the dolphin show, children under 3 go free and ages 3–8 get 50% off. For other tours, ask in the messenger.", "Yunus gösterisinde 3 yaş altı çocuklar ücretsiz, 3–8 yaş %50 indirimli. Diğer turlar için mesajla sorun."],
-  "уточнить у Хайсама": ["confirm with Haytham", "Haytham'a sorulacak"],
   "Нужна ли предоплата и можно ли отменить?": ["Is a deposit needed and can I cancel?", "Ön ödeme gerekli mi, iptal edebilir miyim?"],
-  "ответ от Хайсама: условия брони и отмены": ["answer from Haytham: booking and cancellation terms", "Haytham'dan yanıt: rezervasyon ve iptal koşulları"],
+  "Условия зависят от экскурсии — Хайсам напишет их в чате до того, как вы подтвердите поездку.":
+    ["It depends on the tour — Haytham will send you the terms in the chat before you confirm the trip.",
+     "Koşullar tura göre değişir — Haytham, geziyi onaylamadan önce bunları sohbette size yazar."],
+  "Зависит от программы. До брони Хайсам пришлёт, что входит в цену и за что придётся доплатить на месте.":
+    ["It depends on the programme. Before you book, Haytham will tell you what the price includes and what you'd pay on the spot.",
+     "Programa göre değişir. Rezervasyondan önce Haytham fiyata nelerin dahil olduğunu ve yerinde neye ek ödeme yapacağınızı yazar."],
   "Что не входит в стоимость?": ["What's not included in the price?", "Fiyata neler dahil değil?"],
-  "ответ от Хайсама: входные билеты, чаевые, фото и т.д.": ["answer from Haytham: entrance tickets, tips, photos, etc.", "Haytham'dan yanıt: giriş biletleri, bahşiş, fotoğraf vb."],
 
   // финал и подвал
   "Остались вопросы?": ["Still have questions?", "Sorunuz mu var?"],

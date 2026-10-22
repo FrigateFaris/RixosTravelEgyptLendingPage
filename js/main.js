@@ -296,7 +296,7 @@ const REVEAL = [
   [".reel", "", .08],
   [".polaroid", "pop", .1],
   [".faq details", "", .08],
-  [".final-card", "zoom", 0],
+  [".final2", "zoom", 0],
   [".foot > div", "", .08]
 ];
 const io = new IntersectionObserver(entries => {
